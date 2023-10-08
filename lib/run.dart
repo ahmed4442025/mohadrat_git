@@ -6,15 +6,15 @@ import 'model.dart';
 typedef X = Map<String, dynamic>;
 
 // ==== statics ====
-const String addsPath = "addsPath/";
-const String lecturesPath = "lecturesPath/";
-const String subjectsPath = "subjectsPath/";
+const String addsPath = "https://raw.githubusercontent.com/ahmed4442025/mohadrat_git/master/adds/";
+// const String lecturesPath = "https://raw.githubusercontent.com/ahmed4442025/mohadrat_git/master/subjects/";
+const String subjectsPath = "https://raw.githubusercontent.com/ahmed4442025/mohadrat_git/master/subjects/";
 
 void main() {
   List<Adds> adds = getAddsJson();
-  List<Lectures> lectures = getLectures();
+  List<Subjects> subjects = getSubjects();
 
-  responseData res = responseData(adds: adds, lectures: lectures);
+  responseData res = responseData(adds: adds, subjects: subjects);
 
   String str = json.encode(res.toJson());
   print(str);
@@ -26,13 +26,13 @@ void main() {
 
 // =============== get al files ==========
 
-List<Lectures> getLectures() {
+List<Subjects> getSubjects() {
   List<String> listFiles = listFoldersInDirectory("../subjects");
-  List<Lectures> l = listFiles
-      .map((e) => Lectures(
+  List<Subjects> l = listFiles
+      .map((e) => Subjects(
             img: subjectsPath + e + "/icon.png",
             title: e,
-            data: getLecture(e),
+            lectures: getLecture(e),
           ))
       .toList();
   return l;
@@ -54,7 +54,7 @@ List<OneLecture> getLecture(String lectureName) {
                 .toList(),
           ))
       .toList();
-  print(listLecture);
+  // print(listLecture);
   return l;
 }
 

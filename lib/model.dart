@@ -1,8 +1,8 @@
 class responseData {
   List<Adds>? adds;
-  List<Lectures>? lectures;
+  List<Subjects>? subjects;
 
-  responseData({this.adds, this.lectures});
+  responseData({this.adds, this.subjects});
 
   responseData.fromJson(Map<String, dynamic> json) {
     if (json['adds'] != null) {
@@ -11,10 +11,10 @@ class responseData {
         adds!.add(new Adds.fromJson(v));
       });
     }
-    if (json['lectures'] != null) {
-      lectures = <Lectures>[];
-      json['lectures'].forEach((v) {
-        lectures!.add(new Lectures.fromJson(v));
+    if (json['subjects'] != null) {
+      subjects = <Subjects>[];
+      json['subjects'].forEach((v) {
+        subjects!.add(new Subjects.fromJson(v));
       });
     }
   }
@@ -24,8 +24,8 @@ class responseData {
     if (this.adds != null) {
       data['adds'] = this.adds!.map((v) => v.toJson()).toList();
     }
-    if (this.lectures != null) {
-      data['lectures'] = this.lectures!.map((v) => v.toJson()).toList();
+    if (this.subjects != null) {
+      data['subjects'] = this.subjects!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -50,20 +50,20 @@ class Adds {
   }
 }
 
-class Lectures {
+class Subjects {
   String? title;
   String? img;
-  List<OneLecture>? data;
+  List<OneLecture>? lectures;
 
-  Lectures({this.title, this.img, this.data});
+  Subjects({this.title, this.img, this.lectures});
 
-  Lectures.fromJson(Map<String, dynamic> json) {
+  Subjects.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     img = json['img'];
-    if (json['data'] != null) {
-      data = <OneLecture>[];
-      json['data'].forEach((v) {
-        data!.add(new OneLecture.fromJson(v));
+    if (json['lectures'] != null) {
+      lectures = <OneLecture>[];
+      json['lectures'].forEach((v) {
+        lectures!.add(new OneLecture.fromJson(v));
       });
     }
   }
@@ -72,8 +72,8 @@ class Lectures {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
     data['img'] = this.img;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    if (this.lectures != null) {
+      data['lectures'] = this.lectures!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -91,9 +91,9 @@ class OneLecture {
     date = json['date'];
     img = json['img'];
     title = json['title'];
-    if (json['imgs'] != null) {
+    if (json['images'] != null) {
       imgs = <Images>[];
-      json['imgs'].forEach((v) {
+      json['images'].forEach((v) {
         imgs!.add(new Images.fromJson(v));
       });
     }
@@ -119,13 +119,13 @@ class Images {
 
   Images.fromJson(Map<String, dynamic> json) {
     title = json['title'];
-    img = json['img'];
+    img = json['images'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
-    data['img'] = this.img;
+    data['images'] = this.img;
     return data;
   }
 }
